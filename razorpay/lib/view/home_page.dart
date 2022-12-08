@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
+import '../end_pint/api_kay.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -71,7 +73,7 @@ class _HomePageState extends State<HomePage> {
             ),
             ElevatedButton(
               onPressed: () {
-                openChecF();
+                openCheck();
               },
               child: const Text('Pay'),
             )
@@ -81,13 +83,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void openChecF() async {
+  //call this fun
+  void openCheck() async {
     var options = {
-      'key': 'rzp_test_WC7STPHErvWsZg',
+      'key': apiKey,
       'amount': num.parse(amount.text) * 100,
       'name': 'muhsin',
       'description': 'Payment',
-      'prefill': {'contact': '2323232323', 'email': 'msnmuhin83@gmail.com'},
+      'prefill': {'contact': '2323232323', 'email': 'msn@gmail.com'},
       'external': {
         'wallets': ['paytm']
       }
@@ -100,6 +103,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  //flutter toast for indication
   showToast(msg) {
     Fluttertoast.showToast(
       msg: msg,
